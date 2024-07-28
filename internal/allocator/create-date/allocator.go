@@ -1,8 +1,10 @@
-package allocator
+package create_date
 
 import (
 	"log"
 	"time"
+
+	"allo/internal/file_info"
 )
 
 func getDate(mode Mode, t time.Time) string {
@@ -31,29 +33,29 @@ type opts struct {
 	mode Mode
 }
 
-type CreateDateAllocator struct {
+type Allocator struct {
 	opts
 }
 
-type CreateDateAllocatorOption func(*opts)
+type Option func(*opts)
 
-func WithMode(mode Mode) CreateDateAllocatorOption {
+func WithMode(mode Mode) Option {
 	return func(o *opts) {
 		o.mode = mode
 	}
 }
 
-func NewCreateDateAllocator(options ...CreateDateAllocatorOption) CreateDateAllocator {
+func New(options ...Option) Allocator {
 	opts := opts{
 		mode: ModeDay,
 	}
 	for _, o := range options {
 		o(&opts)
 	}
-	return CreateDateAllocator{opts}
+	return Allocator{opts}
 }
 
-func (a CreateDateAllocator) Allocate(fileInfos []FileInfo) (destinations []string, err error) {
+func (a Allocator) Allocate(fileInfos []file_info.FileInfo) (destinations []string, err error) {
 	destinations = make([]string, len(fileInfos))
 	for i, f := range fileInfos {
 		destinations[i] = getDate(a.opts.mode, f.CreateDate)

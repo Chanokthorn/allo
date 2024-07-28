@@ -1,14 +1,16 @@
-package allocator
+package mock
 
 import (
 	"math/rand"
 	"strconv"
+
+	"allo/internal/file_info"
 )
 
-type MockAllocator struct {
+type RandDateAllocator struct {
 }
 
-func (a MockAllocator) Allocate(fileInfos []FileInfo) (destinations []string, err error) {
+func (a RandDateAllocator) Allocate(fileInfos []file_info.FileInfo) (destinations []string, err error) {
 	// return random running dates as destinatino according to fileInfos length
 	destinations = make([]string, len(fileInfos))
 	for i := range fileInfos {
@@ -18,9 +20,9 @@ func (a MockAllocator) Allocate(fileInfos []FileInfo) (destinations []string, er
 	return destinations, nil
 }
 
-type AnotherMockAllocator struct{}
+type RandCharAllocator struct{}
 
-func (a AnotherMockAllocator) Allocate(fileInfos []FileInfo) (destinations []string, err error) {
+func (a RandCharAllocator) Allocate(fileInfos []file_info.FileInfo) (destinations []string, err error) {
 	// return random alphabets between a and e as destination according to fileInfos length
 	destinations = make([]string, len(fileInfos))
 	for i := range fileInfos {
@@ -30,9 +32,9 @@ func (a AnotherMockAllocator) Allocate(fileInfos []FileInfo) (destinations []str
 	return destinations, nil
 }
 
-type DebugMockAllocator struct{}
+type DebugAllocator struct{}
 
-func (a DebugMockAllocator) Allocate(fileInfos []FileInfo) (destinations []string, err error) {
+func (a DebugAllocator) Allocate(fileInfos []file_info.FileInfo) (destinations []string, err error) {
 	destinations = make([]string, len(fileInfos))
 	for i := range fileInfos {
 		destinations[i] = "debug"
