@@ -20,6 +20,10 @@ type Processor struct {
 	allocators []allocator.Allocator
 }
 
+func New() Processor {
+	return Processor{}
+}
+
 func (p Processor) getFileInfo(directory string, fileName string) (file_info.FileInfo, error) {
 	log.Print("getting file info: ", path.Join(directory, fileName))
 	file, err := os.Open(path.Join(directory, fileName))
