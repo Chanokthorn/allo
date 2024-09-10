@@ -24,6 +24,11 @@ func main() {
 
 	flag.Parse()
 
+	if *stepsString == "" {
+		printWelcomeText()
+		return
+	}
+
 	processor := processor.New()
 
 	steps := strings.Split(*stepsString, ",")
@@ -42,4 +47,21 @@ func main() {
 
 	processor.Run(*pathDir)
 
+}
+
+func printWelcomeText() {
+	log.Println("\033[36m" + `
+====================================
+ _______  ___      ___      _______ 
+|   _   ||   |    |   |    |       |
+|  |_|  ||   |    |   |    |   _   |
+|       ||   |    |   |    |  | |  |
+|       ||   |___ |   |___ |  |_|  |
+|   _   ||       ||       ||       |
+|__| |__||_______||_______||_______|
+---- an image allocator service ----
+
+====================================
+` + "\033[0m" + `
+type "allo -h" for help`)
 }
