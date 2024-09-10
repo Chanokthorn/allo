@@ -1,3 +1,8 @@
+<div align="center">
+<img src="https://github.com/user-attachments/assets/b74c3e2a-4408-48f5-9e51-90ffe3089aad"/>
+</div>
+
+
 # allo
 
 allo is a versatile photography-based tool designed to organize your files based on their creation dates. It supports various allocation steps, including sorting by year, month, day, or a combination of these. Additionally, it offers specialized handling for raw and JPEG files, making it an ideal solution for photographers and anyone looking to bring order to their file collections.
