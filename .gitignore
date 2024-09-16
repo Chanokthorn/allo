@@ -24,3 +24,5 @@ go.work.sum
 
 debug/*
 debug/**/*
+
+debug.log
